@@ -1,19 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import {Provider} from 'react-redux';
 import './App.css';
 import NavBar from './component/navbar'
-import Banner from "./component/banner"
-import ProductList from "./component/productlist"
-import ProductInfo from "./component/productinfo"
+import Home from "./pages/home"
+import Auth from "./pages/auth"
+import Product from "./pages/product"
+import Footer from "./component/footer"
+import store from "./redux/store"
 
 function App() {
   return (
-    <div className="App">
+    <Provider store={store}>
+       <div className="App">
       <NavBar />
-      <Banner />
-      <ProductList />
-     <ProductInfo />
+      <Router>
+        <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/product" component={Product} />
+        <Route exact path="/auth" component={Auth} />
+        </Switch>
+      </Router>
+      <Footer />
     </div>
+
+    </Provider>
+   
   );
 }
 

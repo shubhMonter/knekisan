@@ -1,16 +1,20 @@
 import React from 'react'
 import ProductCard from './productcard'
-export const ProductList = (props) => {
-    let product =[1,2,3,4,5,6]
+export const ProductList = (products,...props) => {
+   let list;
+    if(products){
+       list =Object.values(products)[0]
+    }
     return(
-        <div className="container">
-        <div className="row">
-            {
-                product.map(i=>{
-                    return(<ProductCard />)
-                })
-            }
-        </div>
+        <div className="container section">
+            <div className="row">
+                {
+                   list.map(i=>{
+                       console.log(i);
+                        return(<ProductCard product={i}/>)
+                    })
+                }
+            </div>
     </div>
 
     )

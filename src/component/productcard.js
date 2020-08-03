@@ -1,20 +1,37 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import {Card} from 'react-bootstrap'
-export const ProductCard = (props) => {
+import {imageUrl} from "../constant"
+
+import {setProduct} from "../redux/actions/productActions"
+export const ProductCard = (product,props) => {
+    console.log(props);
+   let img1,img2;
+    if(product.product){
+         img1 = product.product.images[0].replace('public','');
+         if(product.product.images[1])img2 = product.product.images[1].replace('public','');
+    }
+    const onSetProduct = (id)=>{
+            if(id){
+                setProduct(id);
+               
+            }
+    }
+    
     return(
         <div className="col-md-3 col-sm-6" style={{marginTop:"20px"}}>
         <div className="product-grid">
             <div className="product-image">
-                <a href="#">
-                    <img className="pic-1" src="https://i.pinimg.com/originals/31/2a/7c/312a7c028144168bf49485ee92daa4c7.jpg" />
+                <a href="/product" onClick={onSetProduct(product.product._id)}>
+                    <img className="pic-1" src={`${imageUrl}/${img1}`} />
+                    {img2 &&  <img className="pic-2" src={`${imageUrl}/${img2}`} />}
             
                 </a>
             </div>
             
             <div className="product-content">
-                <h3 className="title"><a href="#">Veg Titles</a></h3>
-                <div className="price">$16.00
-                    <span>$20.00</span>
+    <h3 className="title"><a href="#">{product.product.name}</a></h3>
+                <div className="price">₹{product.product.price}
+                    {/* <span>$20.00</span> */}
                 </div>
                 <a className="add-to-cart" href="">+ Add To Cart</a>
             </div>

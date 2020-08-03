@@ -3,7 +3,7 @@ import { Table, Accordion, Card, Button } from "react-bootstrap"
 
 export const ProductInfo = (props) => {
     return (
-        <div className="container">
+        <div className="container section">
             <div className="row product-info" style={{ padding: "50px 0px" }}>
                 <div className="col-md-6 col-sm-12 product-image">
                     <img className="pic-1" src="https://i.pinimg.com/originals/31/2a/7c/312a7c028144168bf49485ee92daa4c7.jpg" />

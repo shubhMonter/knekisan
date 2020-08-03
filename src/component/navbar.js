@@ -19,8 +19,9 @@ export const NavBar = (props) => {
     <Navbar.Collapse id="basic-navbar-nav" >
     
     <Nav className="mr-sm-2">
-        <Nav.Link href="">Login</Nav.Link>
-        <Nav.Link href="">Register</Nav.Link>
+        <Nav.Link href="/product">Product</Nav.Link>
+        <Nav.Link href="/auth">Login</Nav.Link>
+        <Nav.Link href="/auth">Register</Nav.Link>
       </Nav>
 
      

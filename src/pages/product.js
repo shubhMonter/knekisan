@@ -6,7 +6,8 @@ import {getProducts} from '../redux/actions/productActions'
    constructor(props) {
       super(props);
       this.state={
-          product:[]
+          product:[],
+          hist:this.props.history
       }
   }
   componentWillReceiveProps(nextProps){
@@ -17,8 +18,9 @@ import {getProducts} from '../redux/actions/productActions'
       }
   }
     render(){
+      console.log(this.props,this.state);
          return(<>
-            <ProductInfo product={this.state.product}/>
+            <ProductInfo product={this.state.product} hist={this.state.hist}/>
          </>)
      }
  }

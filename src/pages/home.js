@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import PropTypes from "prop-types"
 import Banner from "../component/banner"
 import ProductList from "../component/productlist"
@@ -9,6 +10,7 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state={
+            show:false,
             products:[]
         }
     }
@@ -19,7 +21,7 @@ class Home extends Component {
         console.log(this.props);
         return (<>
             <Banner />
-            <ProductList products={this.props.products}/>
+            <ProductList products={this.props.products}/>  
         </>)
     }
 }

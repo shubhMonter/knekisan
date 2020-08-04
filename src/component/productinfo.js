@@ -1,10 +1,13 @@
 import React from 'react'
 import classNames from 'classnames'
-import { Table, Accordion, Card, Button } from "react-bootstrap"
+import { Table, Accordion, Card, Button,Modal } from "react-bootstrap"
 import { imageUrl } from "../constant"
+import EnquiryForm from "../component/enquiryForm"
 var _ = require('lodash');
-export const ProductInfo = (product, ...props) => {
-    console.log(product.product);
+export const ProductInfo = (product, hist,...props) => {
+    console.log({props});
+    console.log(hist);
+    const [modalShow, setModalShow] = React.useState(false);
     let img1
     if (product.product.images) {
         img1 = product.product.images[0].replace('public', '');
@@ -83,11 +86,29 @@ export const ProductInfo = (product, ...props) => {
                     </div>
 
                     <div className="text-center mt-5">
-                        <a className="button" href="">Send Enquiry</a>
+                        <a className="button" onClick={() => setModalShow(true)}>Send Enquiry</a>
                     </div>
                 </div>
             </div>
-
+            <Modal
+               show={modalShow}
+               onHide={() => setModalShow(false)}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                Enquiry Form
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <EnquiryForm product={product.product._id} history={hist}/>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={() => setModalShow(false)}>Close</Button>
+            </Modal.Footer>
+            </Modal>                 
         </div>
     )
 }

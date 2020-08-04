@@ -4,7 +4,6 @@ import SignUp from "../component/signup"
 
 
  class Auth extends Component {
-     
     render(){
          return(<div style={{height:"80vh"}}>
            <div className="login-reg-panel">
@@ -23,8 +22,8 @@ import SignUp from "../component/signup"
 			</div>
 
 			<div className="white-panel">
-            <SignIn />
-            <SignUp />
+            <SignIn history={this.props.history}/>
+            <SignUp history={this.props.history}/>
 			</div>
 		</div>
          </div>)

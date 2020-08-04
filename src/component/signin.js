@@ -25,7 +25,7 @@ class SignIn extends Component {
 		}
 	
 		if (nextProps.errors) {
-		  this.setState({ errors: nextProps.errors });
+		  this.setState({ errors: nextProps.errors.errors });
 		}
 	  }
 
@@ -49,7 +49,7 @@ class SignIn extends Component {
 		return (
 			
 			<div className="login-show">
-				{errors && <div className="invalid-feedback text-center" style={{display:"block",fontSize:"15px"}}>{errors}</div>}
+				{errors && <div className="alert alert-danger" style={{display:"block",fontSize:"15px"}}>{errors}</div>}
 				 <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   placeholder="Username"

@@ -63,7 +63,7 @@ export const ProductList = (products,...props) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <EnquiryForm product={ModalPro} />
+                <EnquiryForm product={modalPro} />
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={() => setModalShow(false)}>Close</Button>

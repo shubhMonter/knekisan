@@ -59,8 +59,8 @@ class EnquiryForm extends Component {
         console.log(this.state);
         return(
                 <div className="product-info text-center">
-                    {errors && <div className="invalid-feedback text-center" style={{display:"block",fontSize:"15px"}}>{errors}</div>}
-                    {success && <div className="invalid-feedback text-center" style={{display:"block",fontSize:"15px"}}>{success}</div>}
+                    {errors && <div className="alert alert-danger" style={{display:"block",fontSize:"15px"}}>{errors}</div>}
+                    {success && <div className="alert alert-success" style={{display:"block",fontSize:"15px"}}>{success}</div>}
 				 <form onSubmit={this.onSubmit.bind(this)}>
                 <TextFieldGroup
                   placeholder="Sack"

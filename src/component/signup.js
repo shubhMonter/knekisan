@@ -116,8 +116,8 @@ class SignUp extends Component {
         const { errors, current } = this.state;
         return (
             <div className="register-show">
-                <div className="wizard">
-                {errors && <div className="invalid-feedback text-center" style={{display:"block",fontSize:"15px"}}>{errors}</div>}
+                <div className="wizard">{errors && <div className="alert alert-danger text-center" style={{display:"block",fontSize:"15px"}}>{errors}</div>}
+                
                     <div className="wizard-inner">
                     
                         <div className="connecting-line"></div>

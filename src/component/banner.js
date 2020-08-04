@@ -12,38 +12,38 @@ export const Banner = (props) => {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://i.pinimg.com/originals/60/d8/da/60d8dab5f737d1c0793c11a847f5d367.jpg"
+          src="header_img10.jpg"
           alt="First slide"
         />
         <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          {/* <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://i.pinimg.com/originals/60/d8/da/60d8dab5f737d1c0793c11a847f5d367.jpg"
+          src="Khandwa Oils (Classic).jpg"
           alt="Second slide"
         />
 
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          {/* <h3>Second slide label</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> */}
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://i.pinimg.com/originals/60/d8/da/60d8dab5f737d1c0793c11a847f5d367.jpg"
+          src="Khandwa Oils (Khan Pan).jpg"
           alt="Third slide"
         />
 
         <Carousel.Caption>
-          <h3>Third slide label</h3>
+          {/* <h3>Third slide label</h3>
           <p>
             Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
+          </p> */}
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

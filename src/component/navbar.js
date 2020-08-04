@@ -25,7 +25,7 @@ export const NavBar = (props) => {
   return (
     <Navbar bg="white" expand="lg" sticky="top" >
       <div className="container">
-        <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="/"><img src="logo.jpeg" style={{width:"70px"}}/></Navbar.Brand>
 
         <Form inline >
           <div className="input-group ">

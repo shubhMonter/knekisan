@@ -21,7 +21,7 @@ export const ProductCard = (product,props) => {
         <div className="col-md-3 col-sm-6" style={{marginTop:"20px"}}>
         <div className="product-grid">
             <div className="product-image">
-                <a href="/product" onClick={onSetProduct(product.product._id)}>
+                <a href={`/product/${product.product._id}`} onClick={onSetProduct(product.product._id)}>
                     <img className="pic-1" src={`${imageUrl}/${img1}`} />
                     {img2 &&  <img className="pic-2" src={`${imageUrl}/${img2}`} />}
             
@@ -29,7 +29,7 @@ export const ProductCard = (product,props) => {
             </div>
             
             <div className="product-content">
-    <h3 className="title"><a href="#">{product.product.name}</a></h3>
+    <h3 className="title"><a href={`/product/${product.product._id}`}>{product.product.name}</a></h3>
                 <div className="price">₹{product.product.price}
                     {/* <span>$20.00</span> */}
                 </div>

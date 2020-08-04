@@ -9,17 +9,19 @@ export const NavBar = (props) => {
        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
     
     <Form inline >
-    <InputGroup >
-    <FormControl type="text" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search"  icon={FaThumbsUp}/> 
-        
-    </InputGroup>
+    <div className="input-group ">
+           
+            <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon7" className="form-control" />
+            <div className="input-group-prepend">
+              <button id="button-addon7" type="submit" className="btn btn-success"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
         
       </Form>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav" >
     
     <Nav className="mr-sm-2">
-        <Nav.Link href="/product">Product</Nav.Link>
         <Nav.Link href="/auth">Login</Nav.Link>
         <Nav.Link href="/auth">Register</Nav.Link>
       </Nav>

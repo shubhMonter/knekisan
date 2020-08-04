@@ -6,16 +6,19 @@ import {getProducts} from '../redux/actions/productActions'
    constructor(props) {
       super(props);
       this.state={
-          products:[]
+          product:[]
       }
   }
-//   componentWillMount(){
-//       this.props.getProducts();
-//   }
+  componentWillReceiveProps(nextProps){
+      let id = this.props.match.params.id;
+      if(id && nextProps.products){
+        let pro = nextProps.products.find(i=>i._id ==id);
+        this.setState({product:pro});
+      }
+  }
     render(){
-       console.log(this.props);
          return(<>
-            <ProductInfo />
+            <ProductInfo product={this.state.product}/>
          </>)
      }
  }

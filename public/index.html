@@ -28,6 +28,8 @@
     -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" id="fontawesome-css">
+
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/popper.js"></script>
     <script src="https://unpkg.com/tooltip.js"></script>
@@ -75,44 +77,6 @@
         }
     });
 </script>
-<script>
-    $(document).ready(function() {
-        //Initialize tooltips
-        $(' .wizard .nav .nav-tabs > li ').tooltip();
 
-        //Wizard
-        $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-
-            var $target = $(e.target);
-            console.log($target);
-            if ($target.parent().hasClass('disabled')) {
-                return false;
-            }
-        });
-
-        $(".next-step").click(function(e) {
-
-            var $active = $('.nav-tabs li.active');
-            $active.next().removeClass('disabled');
-            nextTab($active);
-
-        });
-        $(".prev-step").click(function(e) {
-            var $active = $('.nav-tabs li.active');
-            prevTab($active);
-
-        });
-    });
-
-    function nextTab(elem) {
-        console.log(elem);
-        $(elem).next().find('a[data-toggle="tab"]').click();
-    }
-
-    function prevTab(elem) {
-        console.log(elem);
-        $(elem).prev().find('a[data-toggle="tab"]').click();
-    }
-</script>
 
 </html>

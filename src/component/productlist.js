@@ -6,7 +6,7 @@ import {setProduct} from "../redux/actions/productActions"
 import EnquiryForm from "./enquiryForm"
 export const ProductList = (products,...props) => {
     const [modalShow, setModalShow] = React.useState(false);
-    const [modalPro, setModalPro] = React.useState(false);
+    const [modalPro, setModalPro] = React.useState('');
    let list;
     if(products){
        list =Object.values(products)[0]

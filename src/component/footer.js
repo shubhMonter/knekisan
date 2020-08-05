@@ -8,19 +8,17 @@ export const Footer = (props) => {
                     <div className="col-xl-3 col-sm-6 col-12">
                         <div className="footer-section">
                             <h6>Company</h6>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                            <p></p>
                         </div>
                     </div>
                     <div className="col-xl-3 col-sm-6 col-12">
                         <div className="footer-section">
                             <h6>OUR SERVICES</h6>
                             <div className="service-link">
-                                <a href="#">ABOUT US</a>
+                                {/* <a href="#">ABOUT US</a>
                                 <a href="#">SERVICES</a>
                                 <a href="#">BLOG</a>
-                                <a href="#">CONTACT US</a>
+                                <a href="#">CONTACT US</a> */}
                             </div>
                         </div>
                     </div>
@@ -28,9 +26,9 @@ export const Footer = (props) => {
                         <div className="footer-section">
                             <h6>OUR FEATURES</h6>
                             <div className="service-link">
-                                <a href="#">MENS</a>
+                                {/* <a href="#">MENS</a>
                                 <a href="#">WOMENS</a>
-                                <a href="#">SHOPE</a>
+                                <a href="#">SHOPE</a> */}
                             </div>
                         </div>
                     </div>
@@ -48,7 +46,7 @@ export const Footer = (props) => {
                 </div>
             </div>
             <div className="copy-write">
-                <p>Copy right @ ExpressTech Software Solution all right reserve</p>
+                <p>Copy right @ KNKisan all right reserve</p>
             </div>
         </div>)
 }

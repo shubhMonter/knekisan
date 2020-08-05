@@ -25,7 +25,7 @@ class SignIn extends Component {
 		}
 	
 		if (nextProps.errors) {
-		  this.setState({ errors: nextProps.errors.errors });
+		  this.setState({ errors: nextProps.errors.error });
 		}
 	  }
 
@@ -42,10 +42,12 @@ class SignIn extends Component {
 	
 	  onChange = e => {
 		this.setState({ [e.target.name]: e.target.value });
+		this.setState({errors:""});
 	  }
 	
 	render(){
 		const {errors}=this.state;
+		console.log("errors",errors);
 		return (
 			
 			<div className="login-show">
@@ -57,7 +59,8 @@ class SignIn extends Component {
                   type="text"
                   value={this.state.username}
                   onChange={this.onChange}
-                //  error={errors.email}
+				//  error={errors.email}
+					required={true}
                 />
 
                 <TextFieldGroup
@@ -66,7 +69,8 @@ class SignIn extends Component {
                   type="password"
                   value={this.state.password}
                   onChange={this.onChange}
-                 // error={errors.password}
+				 // error={errors.password}
+				 required={true}
                 />
                 <input type="submit" className="button" />
               </form>

@@ -83,19 +83,23 @@ class Dashboard extends Component {
                         <div class="profile-content">
                             {enquiry && enquiry.map(i => {
                                 console.log("test", i);
-                                let img = i.product.images[0].replace('public', '');
+                                let img 
+                                if(i.product){
+                                    img = i.product.images[0].replace('public', '');
+                                }
+                                
                                 return (
                                     <div class="card ">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <img class="d-block w-100" src={`${imageUrl}/${img}`} alt="" />
+                                            { i.product   &&    <img class="d-block w-100" src={`${imageUrl}/${img}`} alt="" />}
                                             </div>
                                             <div class="col-sm-8" style={{ padding: "20px" }}>
                                                 <div class="card-block">
-                                                    <h4 class="card-title">{i.product.name}</h4>
+                                                   {i.product  && <>  <h4 class="card-title">{i.product.name}</h4>
                                                     <div className="price">₹{i.product.price}
                                                         {/* <span>$20.00</span> */}
-                                                    </div>
+                                                    </div> </>}
                                                     <div className="row">
                                                         <div className="col-md-6 col-sm-6">
                                                             status:{i.status}

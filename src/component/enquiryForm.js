@@ -70,6 +70,7 @@ class EnquiryForm extends Component {
                   value={this.state.bori}
                   onChange={this.onChange}
                  // error={errors.bori}
+                 required={true}
                 />
 
                 <TextFieldGroup
@@ -80,6 +81,7 @@ class EnquiryForm extends Component {
                   value={this.state.weight}
                   onChange={this.onChange}
                  // error={errors.weight}
+                 required={true}
                 /> <TextFieldGroup
                   placeholder="Vehicle Number"
                   className="veh"
@@ -88,6 +90,7 @@ class EnquiryForm extends Component {
                   value={this.state.vehicleNo}
                   onChange={this.onChange}
                 //  error={errors.vehicleNo}
+                required={true}
                 /> <TextFieldGroup
                   placeholder="Driver Name"
                   className="driver"
@@ -104,6 +107,7 @@ class EnquiryForm extends Component {
                   value={this.state.notes}
                   onChange={this.onChange}
                  // error={errors.notes}
+                 required={true}
                 /><TextFieldGroup
                 placeholder="Quality"
                 className="quality"
@@ -112,6 +116,7 @@ class EnquiryForm extends Component {
                 value={this.state.quality}
                 onChange={this.onChange}
                // error={errors.quality}
+               
               /> 
                <button type="submit" className="button">Send Enquiry</button>
               </form>

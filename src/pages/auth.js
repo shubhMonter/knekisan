@@ -5,7 +5,7 @@ import SignUp from "../component/signup"
 
  class Auth extends Component {
     render(){
-         return(<div style={{height:"90vh"}}>
+         return(<div style={{height:"100vh"}}>
            <div className="login-reg-panel">
 			<div className="login-info-box">
 				<h2>Have an account?</h2>

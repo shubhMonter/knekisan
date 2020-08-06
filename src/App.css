@@ -537,7 +537,7 @@
             top: 50%;
             transform: translateY(-50%);
             text-align: center;
-            width: 70%;
+            max-width: 70%;
             right: 0;
             left: 0;
             margin: auto;
@@ -550,7 +550,7 @@
             height: 575px;
             position: absolute;
             top: -83px;
-            width: 50%;
+            max-width: 50%;
             right: calc(50% - 50px);
             transition: .3s ease-in-out;
             z-index: 0;
@@ -598,7 +598,7 @@
         }
         
         .right-log {
-            right: 50px !important;
+            right: 75px !important;
         }
         
         .login-show,
@@ -776,7 +776,6 @@
         
         .wizard {
             margin: 20px auto;
-            background: #fff;
             top: -65px;
             position: relative;
         }
@@ -1053,4 +1052,69 @@
             background: #fff;
             min-height: 460px;
             border: 1px solid lightgrey
+        }
+        
+        @media (max-width: 1200px) {
+            .login-reg-panel {
+                max-width: 70%;
+            }
+            .white-panel {
+                max-width: 60%;
+            }
+            .right-log {
+                right: -60px !important;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .login-reg-panel {
+                max-width: 80%;
+            }
+            .white-panel {
+                max-width: 70%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .login-reg-panel {
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .login-reg-panel {
+                max-width: 100%;
+                top: 45%;
+            }
+            .form-inline {
+                width: 50%;
+            }
+            .white-panel {
+                max-width: 80%;
+                right: calc(50% - 125px);
+                height: 500px;
+            }
+            .right-log {
+                right: 30px !important;
+            }
+            .login-reg-panel {
+                transform: translateY(-33%);
+                height: 520px;
+            }
+            .login-info-box {
+                width: 100%;
+                top: 85%;
+                padding: 0px 30px;
+            }
+            .login-info-box h2 {
+                font-size: 1.5rem;
+            }
+            .register-info-box {
+                width: 100%;
+                top: 85%;
+                padding: 0px 5%;
+            }
+            .register-info-box h2 {
+                font-size: 1.5rem;
+            }
         }

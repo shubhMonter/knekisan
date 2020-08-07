@@ -6,6 +6,7 @@ import setAuthToken from './utils/setAuthToken';
 import { setUser, logoutUser } from './redux/actions/authAction';
 import PrivateRoute from "./component/common/PrivateRoute"
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './component/navbar'
 import Home from "./pages/home"
 import Auth from "./pages/auth"

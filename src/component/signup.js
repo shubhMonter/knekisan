@@ -27,17 +27,17 @@ class SignUp extends Component {
             addressLine2: "",
             city: "",
             state: "",
-            landArea: 0,
+            landArea: Number,
             landAreaType: options1[0].value,
-            commodity: "",
+            commodity: ['commodity-0'],
 
-            bankName: "",
-            accountNo: "",
-            IFSCCode: "",
-            accountHolderName: "",
+            bank_name: "",
+            accNumber: "",
+            ifscCode: "",
+            accHolderName: "",
 
-            adharCard: "",
-            panCard: "",
+            aadharNumber: "",
+            pan: "",
             bookno: "",
             documentsUploaded: [],
             errors: ""
@@ -83,11 +83,11 @@ class SignUp extends Component {
                 this.setState({errors:""})
         }
         if(this.state.current==3){
-            if (!this.state.accountNo) {
+            if (!this.state.accNumber) {
                 this.setState({ errors: `${applyForm[15].validationMessage} ${applyForm[15].name}` })
-            } else if (!this.state.IFSCCode) {
+            } else if (!this.state.ifscCode) {
                 this.setState({ errors: `${applyForm[16].validationMessage} ${applyForm[16].name}` })
-            } else if (!this.state.accountHolderName) {
+            } else if (!this.state.accHolderName) {
                 this.setState({ errors: `${applyForm[17].validationMessage} ${applyForm[17].name}` })
             }else {
                 this.setState({ current: this.state.current + 1 })
@@ -95,9 +95,9 @@ class SignUp extends Component {
             }
         }
         if(this.state.current==4){
-            if (!this.state.adharCard) {
+            if (!this.state.aadharNumber) {
                 this.setState({ errors: `${applyForm[21].validationMessage} ${applyForm[21].name}` })
-            } else if (!this.state.panCard) {
+            } else if (!this.state.pan) {
                 this.setState({ errors: `${applyForm[22].validationMessage} ${applyForm[22].name}` })
             } else {
                 this.setState({ current: this.state.current + 1 })
@@ -121,15 +121,17 @@ class SignUp extends Component {
             state,
             landArea,
             landAreaType,
-            commodity,
-            bankName,
-            accountNo,
-            IFSCCode,
-            accountHolderName,
-            adharCard,
-            panCard,
+            bank_name,
+            accNumber,
+            ifscCode,
+            accHolderName,
+            aadharNumber,
+            pan,
             bookno,
             documentsUploaded, } = this.state;
+            const com = this.state.commodity.map(i=> {return this.state[i]});
+            let commodity =JSON.stringify(com);
+
         const newUser = {
             userType,
             userName,
@@ -143,24 +145,30 @@ class SignUp extends Component {
             landAreaType,
             commodity,
             bankDetails: {
-                bankName,
-                accountNo,
-                IFSCCode,
-                accountHolderName,
+                bank_name,
+                accNumber,
+                ifscCode,
+                accHolderName,
             },
-            adharCard,
-            panCard,
+            aadharNumber,
+            pan,
             bookno,
             documentsUploaded
         };
         this.props.regUser(newUser);
 
     }
-
+    appendInput() {
+        var newInput = `commodity-${this.state.commodity.length}`;
+        this.setState(prevState => ({ commodity: prevState.commodity.concat([newInput]) }));
+    }
 
     render() {
-        console.log(this.props);
+        console.log(this.state);
         const { errors, current } = this.state;
+        const commodity = this.state.commodity.map(i=> {return this.state[i]});
+          let com = JSON.stringify(commodity);
+          console.log(com);
         return (
             <div className="register-show">
                 <div className="wizard">{errors && <div className="alert alert-danger text-center" style={{ display: "block", fontSize: "15px",marginTop: "-75px" }}>{errors}</div>}
@@ -273,7 +281,7 @@ class SignUp extends Component {
                                 </ul>
                             </div>
                             <div className={classNames("tab-pane", { active: current == 2 })} role="tabpanel" id="step2" >
-
+                                <div style={{ height: "300px", overflowY: "auto" }}>
                                 <TextFieldGroup
                                     placeholder="Land Area"
                                     name="landArea"
@@ -290,13 +298,19 @@ class SignUp extends Component {
                                 // error={errors.landAreaType}
 
                                 />
+                                <button type="button" className="button btn-default" onClick={(e) => this.appendInput() }>Add Commodity</button>
+                                
+
+                                {this.state.commodity.map(input => 
                                 <TextFieldGroup
-                                    placeholder="Commodity"
-                                    name="commodity"
-                                    value={this.state.commodity}
-                                    onChange={this.onChange}
-                                //error={errors.commodity}
-                                />
+                                placeholder="Commodity"
+                                name={input}
+                                key={input}
+                                value={this.state.commodity[input]}
+                                onChange={this.onChange}
+                            //error={errors.commodity}
+                            />)}
+                            </div>
                                 <ul className="row">
                                     <div className="col-md"><button type="button" className="button btn-default prev-step" onClick={(e) => this.prevForm()}>Previous</button></div>
                                     <div className="col-md"><button type="button" className="button next-step" onClick={(e) => this.nextForm()}>Next</button></div>
@@ -305,53 +319,53 @@ class SignUp extends Component {
                             <div className={classNames("tab-pane", { active: current == 3 })} role="tabpanel" id="step3" >
                                 <TextFieldGroup
                                     placeholder="Name of Bank"
-                                    name="bankName"
-                                    value={this.state.bankName}
+                                    name="bank_name"
+                                    value={this.state.bank_name}
                                     onChange={this.onChange}
-                                    //error={errors.bankName}
+                                    //error={errors.bank_name}
                                     required={true}
                                 /><TextFieldGroup
                                     placeholder="Account Number"
-                                    name="accountNo"
-                                    value={this.state.accountNo}
+                                    name="accNumber"
+                                    value={this.state.accNumber}
                                     onChange={this.onChange}
-                                    // error={errors.accountNo}
+                                    // error={errors.accNumber}
                                     required={true}
                                 /><TextFieldGroup
-                                    placeholder="IFSC Code"
-                                    name="IFSCCode"
-                                    value={this.state.IFSCCode}
+                                    placeholder="ifsc Code"
+                                    name="ifscCode"
+                                    value={this.state.ifscCode}
                                     onChange={this.onChange}
-                                    //error={errors.IFSCCode}
+                                    //error={errors.ifscCode}
                                     required={true}
                                 /><TextFieldGroup
                                     placeholder="Account Holder Name"
-                                    name="accountHolderName"
-                                    value={this.state.accountHolderName}
+                                    name="accHolderName"
+                                    value={this.state.accHolderName}
                                     onChange={this.onChange}
-                                    // error={errors.accountHolderName}
+                                    // error={errors.accHolderName}
                                     required={true}
                                 />
                                 <ul className="row">
                                     <div className="col-md"><button type="button" className="button btn-default prev-step" onClick={(e) => this.prevForm()}>Previous</button></div>
-                                   
+                        
                                     <div className="col-md"><button type="button" className="button btn-primary btn-info-full next-step" onClick={(e) => this.nextForm()}>Next</button></div>
                                 </ul>
                             </div>
                             <div className={classNames("tab-pane", { active: current == 4 })} role="tabpanel" id="complete" >
                                 <TextFieldGroup
-                                    placeholder="AdharCard Number"
-                                    name="adharCard"
-                                    value={this.state.adharCard}
+                                    placeholder="AadharNumber Number"
+                                    name="aadharNumber"
+                                    value={this.state.aadharNumber}
                                     onChange={this.onChange}
-                                    //error={errors.adharCard}
+                                    //error={errors.aadharNumber}
                                     required={true}
                                 /><TextFieldGroup
-                                    placeholder="PANCard Number"
-                                    name="panCard"
-                                    value={this.state.panCard}
+                                    placeholder="PAN Number"
+                                    name="pan"
+                                    value={this.state.pan}
                                     onChange={this.onChange}
-                                // error={errors.panCard}
+                                // error={errors.pan}
                                 /><TextFieldGroup
                                     placeholder="Book no"
                                     name="bookno"

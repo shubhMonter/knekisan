@@ -1,6 +1,6 @@
 import { SET_USER, UNSET_USER, SET_CART,SET_ERRORS } from "./types";
 import setAuthToken from '../../utils/setAuthToken';
-import {registerUser,loginUser} from "../../services/auth"
+import {registerUser,loginUser,updateUserDetails} from "../../services/auth"
 import jwt_decode from 'jwt-decode';
 // Login - Get User Token
 export const logUser = userData => dispatch => {
@@ -40,17 +40,34 @@ export const logUser = userData => dispatch => {
         // Decode token to get user data
         const decoded = jwt_decode(token);
         // Set current user
-        dispatch(setUser(decoded));
+        delete res.data.user.password;
+        dispatch(setUser(res.data.user));
       })
       .catch(err =>{
           console.log({err})
+          if(err.response.data){
         dispatch({
           type: SET_ERRORS,
           payload: err.response.data
         });}
+      }
       );
   };
 
+  export const updateUser = userData => dispatch =>{
+    updateUserDetails(userData).then(res=>{
+      delete res.data.data.password;
+      dispatch(setUser(res.data.data));
+    }).catch(err =>{
+      console.log({err})
+      if(err.response.data){
+    dispatch({
+      type: SET_ERRORS,
+      payload: err.response.data
+    });}
+  }
+  );
+  }
   // Set logged in user
   export const setUser = decoded => {
     return {

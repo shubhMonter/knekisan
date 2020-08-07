@@ -7,7 +7,7 @@ import SignUp from "../component/signup"
     render(){
          return(<div style={{height:"100vh"}}>
            <div className="login-reg-panel">
-			<div className="login-info-box">
+			<div className="login-info-box" style={{display:"none"}}>
 				<h2>Have an account?</h2>
 				{/* <p>Lorem ipsum dolor sit amet</p> */}
 				<label id="label-register" htmlFor="log-reg-show">Login</label>

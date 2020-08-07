@@ -50,7 +50,7 @@ class SignIn extends Component {
 		console.log("errors",errors);
 		return (
 			
-			<div className="login-show">
+			<div className="login-show show-log-panel">
 				{errors && <div className="alert alert-danger" style={{display:"block",fontSize:"15px"}}>{errors}</div>}
 				 <form onSubmit={this.onSubmit}>
                 <TextFieldGroup

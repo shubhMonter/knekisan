@@ -78,6 +78,10 @@ class SignUp extends Component {
                 this.setState({errors:""})
             }
         }
+        if(this.state.current==2){
+            this.setState({ current: this.state.current + 1 })
+                this.setState({errors:""})
+        }
         if(this.state.current==3){
             if (!this.state.accountNo) {
                 this.setState({ errors: `${applyForm[15].validationMessage} ${applyForm[15].name}` })
@@ -330,7 +334,7 @@ class SignUp extends Component {
                                 />
                                 <ul className="row">
                                     <div className="col-md"><button type="button" className="button btn-default prev-step" onClick={(e) => this.prevForm()}>Previous</button></div>
-                                    <div className="col-md"><button type="button" className="button btn-default next-step" onClick={(e) => this.nextForm()} >Skip</button></div>
+                                   
                                     <div className="col-md"><button type="button" className="button btn-primary btn-info-full next-step" onClick={(e) => this.nextForm()}>Next</button></div>
                                 </ul>
                             </div>

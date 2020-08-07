@@ -10,7 +10,7 @@ export const NavBar = (props) => {
       <Nav.Link href="/dashboard">
         <i className="fa fa fa-user-circle main" style={{fontSize:"x-large"}}></i> 
         </Nav.Link>
-      <Nav.Link onClick={() => props.logoutUser()}>
+      <Nav.Link onClick={() => {props.logoutUser();window.location.reload(false)}}>
         <i className="fa fa-sign-out main" style={{fontSize:"x-large"}}></i> 
         </Nav.Link>
     </Nav>

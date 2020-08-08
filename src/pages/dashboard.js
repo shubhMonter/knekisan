@@ -45,7 +45,6 @@ class Dashboard extends Component {
     render() {
         const { user } = this.props.auth;
         const {t} =this.props;
-        console.log(user.documentsUploaded);
         const { enquiry } = this.props
         return (
             <div className="container">
@@ -54,7 +53,7 @@ class Dashboard extends Component {
                         <div className="profile-sidebar">
 
                             <div className="profile-userpic">
-                            {user.documentsUploaded != undefined   &&  user.documentsUploaded.length>0 &&  <img src={`${imageUrl}/${user.documentsUploaded[0].replace("public","")}`} className="img-responsive" alt="" />}
+                            {user.documentsUploaded != undefined   &&  user.documentsUploaded.length>0 &&  <img src={user.documentsUploaded[0]} className="img-responsive" alt="" />}
                             </div>
 
                             <div className="profile-usertitle">

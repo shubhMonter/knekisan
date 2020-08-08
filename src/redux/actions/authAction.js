@@ -43,7 +43,7 @@ export const logUser = userData => dispatch => {
         const decoded = jwt_decode(token);
         // Set current user
         delete res.data.user.password;
-        dispatch(setUser(res.data.user));
+       return dispatch(setUser(res.data.user));
       })
       .catch(err =>{
           console.log({err})
@@ -59,7 +59,7 @@ export const logUser = userData => dispatch => {
   export const updateUser = userData => dispatch =>{
     updateUserDetails(userData).then(res=>{
       delete res.data.data.password;
-      dispatch(setUser(res.data.data));
+     return dispatch(setUser(res.data.data));
     }).catch(err =>{
       console.log({err})
       if(err.response.data){

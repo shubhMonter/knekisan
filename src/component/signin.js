@@ -2,8 +2,9 @@ import React, { Component } from "react"
 import TextFieldGroup from "./common/TextFieldGroup";
 import {logUser} from "../redux/actions/authAction"
 import {connect} from 'react-redux'
+import classNames from "classnames"
 import PropTypes from "prop-types"
-
+import { withTranslation } from 'react-i18next';
 class SignIn extends Component {
 	constructor(props) {
         super(props);
@@ -25,7 +26,13 @@ class SignIn extends Component {
 		}
 	
 		if (nextProps.errors) {
-		  this.setState({ errors: nextProps.errors.error });
+			if(nextProps.errors.auth===false){
+				console.log(nextProps.errors.auth);
+				this.setState({errors:"Wrong Password or Username!!"})
+			}else{
+				this.setState({ errors: nextProps.errors.error });
+			}
+		  
 		}
 	  }
 
@@ -47,14 +54,15 @@ class SignIn extends Component {
 	
 	render(){
 		const {errors}=this.state;
-		console.log("errors",errors);
+		const { t } = this.props;
+		
 		return (
 			
-			<div className="login-show show-log-panel">
+			<div className={classNames("login-show",{"show-log-panel":this.props.logreg==0})}>
 				{errors && <div className="alert alert-danger" style={{display:"block",fontSize:"15px"}}>{errors}</div>}
 				 <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
-                  placeholder="Username"
+                  placeholder={t("username")}
                   name="username"
                   type="text"
                   value={this.state.username}
@@ -64,7 +72,7 @@ class SignIn extends Component {
                 />
 
                 <TextFieldGroup
-                  placeholder="Password"
+                  placeholder={t("password")}
                   name="password"
                   type="password"
                   value={this.state.password}
@@ -72,10 +80,10 @@ class SignIn extends Component {
 				 // error={errors.password}
 				 required={true}
                 />
-                <input type="submit" className="button" />
+                <button type="submit" className="button" >{t("login")}</button>
               </form>
             
-				<a href="">Forgot password?</a>
+				<a href="">{t("forgetpassword")}</a>
 			</div>
 	
 		)
@@ -92,4 +100,4 @@ const mapStateToProps =(state) => ({
     errors: state.errors
   });
 
-export default connect(mapStateToProps, {logUser})(SignIn);
+export default connect(mapStateToProps, {logUser})(withTranslation("auth")(SignIn));

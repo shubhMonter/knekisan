@@ -6,21 +6,22 @@ import SelectListGroup from "../component/common/SelectListGroup";
 import { imageUrl } from "../constant"
 import classNames from "classnames"
 import Editprofile from "../component/editprofile"
+import { withTranslation } from 'react-i18next';
 const options=[
-    {label:"select status"},
-    {label:"Pending",value:"Pending"},
-    {label:"Approved",value:"Approved"},
-    {label:"Declined",value:"Declined"}
+    {label:"status"},
+    {label:"pending",value:"Pending"},
+    {label:"approved",value:"Approved"},
+    {label:"declined",value:"Declined"}
 ]
 const options1=[
-    {label:"Qunatity"},
-    {label:"Received",value:true},
-    {label:"Not Received",value:false},  
+    {label:"quantity"},
+    {label:"received",value:true},
+    {label:"notreceived",value:false},  
 ]
 const options2=[
-    {label:"Payment"},
-    {label:"Received",value:true},
-    {label:"Not Received",value:false},  
+    {label:"payment"},
+    {label:"received",value:true},
+    {label:"notreceived",value:false},  
 ]
 
 class Dashboard extends Component {
@@ -43,6 +44,8 @@ class Dashboard extends Component {
 
     render() {
         const { user } = this.props.auth;
+        const {t} =this.props;
+        console.log(user.documentsUploaded);
         const { enquiry } = this.props
         return (
             <div className="container">
@@ -51,7 +54,7 @@ class Dashboard extends Component {
                         <div className="profile-sidebar">
 
                             <div className="profile-userpic">
-                            {user.documentsUploaded &&    <img src={`${imageUrl}/${user.documentsUploaded[0].replace("public","")}`} className="img-responsive" alt="" />}
+                            {user.documentsUploaded != undefined   &&  user.documentsUploaded.length>0 &&  <img src={`${imageUrl}/${user.documentsUploaded[0].replace("public","")}`} className="img-responsive" alt="" />}
                             </div>
 
                             <div className="profile-usertitle">
@@ -80,12 +83,12 @@ class Dashboard extends Component {
                                     <li className={classNames({'active':this.state.tab==0})}>
                                         <a onClick={(e)=>this.setState({tab:0})}>
                                             <i className="glyphicon glyphicon-home"></i>
-                                   Enquiry </a>
+                        {t("dashboard:enquiry")}</a>
                                     </li>
                                     <li className={classNames({'active':this.state.tab==1})}>
                                         <a onClick={(e)=>this.setState({tab:1})}>
                                             <i className="glyphicon glyphicon-user"></i>
-                                    Account Settings </a>
+                                            {t("dashboard:accsetting")} </a>
                                     </li>
                                     {/* <li>
                                         <a href="#" target="_blank">
@@ -106,7 +109,7 @@ class Dashboard extends Component {
                         <div className={classNames("profile-content",{'none':this.state.tab!=0})}>
                             <div className="row ">
                                 <div className="form-inline" >
-                                 <button type="button" className="btn btn-info filter col-md-2" onClick={(e)=>this.setState({key:""})}>All</button>   
+                                <button type="button" className="btn btn-info filter col-md-2" onClick={(e)=>this.setState({key:""})}>{t("dashboard:all")}</button>   
                                 <SelectListGroup
                                         placeholder="Status"
                                         name="status"
@@ -114,7 +117,7 @@ class Dashboard extends Component {
                                         onChange={(e)=> this.setState({filter:{status:e.target.value},key:"status"})}
                                         options={options}
                                         //error={errors.userType}
-                                       
+                                        lang="dashboard"
                                         className="filter"
                                     />
                                     <SelectListGroup
@@ -130,9 +133,10 @@ class Dashboard extends Component {
                                             this.setState({filter:{quantityRecievedFlag:value},key:"quantityRecievedFlag"})
                                         }
                                         }
+                                        lang="dashboard"
                                         options={options1}
                                         //error={errors.userType}
-                                        
+                                        lang="dashboard"
                                         className="filter"
                                     />
                                     <SelectListGroup
@@ -150,7 +154,7 @@ class Dashboard extends Component {
                                         }}
                                         options={options2}
                                         //error={errors.userType}
-                                        
+                                        lang="dashboard"
                                         className="filter"
                                     />
 
@@ -192,20 +196,20 @@ class Dashboard extends Component {
                                                     </div> </>}
                                                     <div className="row">
                                                         <div className="col-md-6 col-sm-6">
-                                                            status:{i.status}
+                                                            {t("status")}:{i.status}
                                                         </div>
                                                         <div className="col-md-6 col-sm-6 p-sm">
-                                                            bori:{i.bori}
+                                                            {t("sack")}:{i.bori}
                                                         </div>
                                                         <div className="col-md-6 col-sm-6">
-                                                            quality:{i.quality}
+                                                            {t("quality")}:{i.quality}
                                                         </div><div className="col-md-6 col-sm-6">
-                                                            weight:{i.weight}
+                                                            {t("weight")}:{i.weight}
                                                         </div>
                                                         <div className="col-md-6 col-sm-6">
-                                                            driver:{i.driver}
+                                                            {t("drivername")}:{i.driver}
                                                         </div><div className="col-md-6 col-sm-6">
-                                                            vehicle Number:{i.vehicleNo}
+                                                            {t("vehno")}:{i.vehicleNo}
                                                         </div>
                                                     </div>
 
@@ -243,4 +247,4 @@ const mapStateToProps = (state) => ({
     enquiry: state.enquiry.enquiries
 })
 
-export default connect(mapStateToProps, { enquiryList })(Dashboard)
+export default connect(mapStateToProps, { enquiryList })(withTranslation(["enquiry","dashboard"])(Dashboard))

@@ -1,0 +1,19 @@
+{
+    "details": "Details",
+    "profile": "Profile",
+    "land": "Land",
+    "identity": "Identity",
+    "card": "Card",
+    "bank": "Bank",
+    "enquiry": "Enquiry",
+    "accsetting": "Account Setting",
+    "all": "All",
+    "payment": "Payment",
+    "quantity": "Quantity",
+    "received": "Received",
+    "notreceived": "Not Received",
+    "status": "Status",
+    "pending": "Pending",
+    "approved": "Approved",
+    "declined": "Declined"
+}

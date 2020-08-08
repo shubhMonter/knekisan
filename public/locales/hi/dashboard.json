@@ -1,0 +1,20 @@
+{
+    "details": "विवरण",
+    "profile": "प्रोफ़ाइल",
+    "land": "भूमि",
+    "identity": "पहचान",
+    "card": "पत्र",
+    "bank": "बैंक",
+    "enquiry": "जांच",
+    "accsetting": "खाता समायोजन",
+    "all": "सब",
+    "status": "स्थिति",
+    "pending": "विचाराधीन",
+    "approved": "मंजूर की",
+    "declined": "इंकार कर दिया",
+    "payment": "भुगतान",
+    "quantity": "मात्रा",
+    "received": "प्राप्त किया",
+    "notreceived": "नही मिला"
+
+}

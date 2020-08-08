@@ -5,13 +5,14 @@ import SelectListGroup from "./common/SelectListGroup";
 import { regUser } from "../redux/actions/authAction"
 import { connect } from 'react-redux'
 import PropTypes from "prop-types"
-const options = [
-    { label: "Farmer", value: 'Farmer' },
-    { label: "Adatiya", value: 'Adatiya' },
-    { label: "Broker", value: 'Broker' }
+import { withTranslation } from 'react-i18next';
+let options = [
+    { label: "farmer", value: "farmer" },
+    { label: "adatiya", value: 'adatiya' },
+    { label: "broker", value: 'broker' }
 ]
-const options1 = [
-    { label: "class", value: 'class' },
+let options1 = [
+    { label: "square", value: 'square' },
     { label: "acre", value: 'acre' }
 ]
 class SignUp extends Component {
@@ -52,7 +53,7 @@ class SignUp extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
-            console.log(nextProps.errors);
+            
             this.setState({ errors: nextProps.errors.error });
         }
     }
@@ -164,13 +165,14 @@ class SignUp extends Component {
     }
 
     render() {
-        console.log(this.state);
+
+       
+        const { t } = this.props;
+        
         const { errors, current } = this.state;
-        const commodity = this.state.commodity.map(i=> {return this.state[i]});
-          let com = JSON.stringify(commodity);
-          console.log(com);
+       
         return (
-            <div className="register-show">
+            <div className={classNames("register-show",{"show-log-panel":this.props.logreg==1})}>
                 <div className="wizard">{errors && <div className="alert alert-danger text-center" style={{ display: "block", fontSize: "15px",marginTop: "-75px" }}>{errors}</div>}
 
                     <div className="wizard-inner">
@@ -216,24 +218,25 @@ class SignUp extends Component {
                             <div className={classNames("tab-pane", { active: current == 1 })} role="tabpanel" id="step1" >
                                 <div style={{ height: "300px", overflowY: "auto" }}>
                                     <SelectListGroup
-                                        placeholder="Type of User"
+                                        placeholder={t("typeofuser")}
                                         name="userType"
                                         value={this.state.userType}
                                         onChange={this.onChange}
                                         options={options}
                                         //error={errors.userType}
-                                        info="Type of User"
+                                        info={t("typeofuser")}
                                         required={true}
+                                        lang="auth"
                                     />
                                     <TextFieldGroup
-                                        placeholder="UserName"
+                                        placeholder={t("username")}
                                         name="userName"
                                         value={this.state.userName}
                                         onChange={this.onChange}
                                         //error={errors.userName}
                                         required={true}
                                     /><TextFieldGroup
-                                        placeholder="Password"
+                                        placeholder={t("username")}
                                         name="password"
                                         type="password"
                                         value={this.state.password}
@@ -242,7 +245,7 @@ class SignUp extends Component {
                                         required={true}
                                     />
                                     <TextFieldGroup
-                                        placeholder="Mobile Number"
+                                        placeholder={t("mobno")}
                                         name="mobile"
                                         value={this.state.mobile}
                                         onChange={this.onChange}
@@ -250,26 +253,26 @@ class SignUp extends Component {
                                         required={true}
                                     />
                                     <TextFieldGroup
-                                        placeholder="Address 1"
+                                        placeholder={`${t("address")}1`}
                                         name="address1"
                                         value={this.state.address1}
                                         onChange={this.onChange}
                                     //error={errors.address1}
                                     />
                                     <TextFieldGroup
-                                        placeholder="Address 2"
+                                        placeholder={`${t("address")}2`}
                                         name="address2"
                                         value={this.state.address2}
                                         onChange={this.onChange}
                                     // error={errors.address2}
                                     /><TextFieldGroup
-                                        placeholder="City"
+                                        placeholder={t("city")}
                                         name="city"
                                         value={this.state.city}
                                         onChange={this.onChange}
                                     //error={errors.city}
                                     /><TextFieldGroup
-                                        placeholder="State"
+                                        placeholder={t("state")}
                                         name="state"
                                         value={this.state.state}
                                         onChange={this.onChange}
@@ -277,13 +280,13 @@ class SignUp extends Component {
                                     />
                                 </div>
                                 <ul className="list-inline text-center" style={{marginTop:"30px"}}>
-                                    <li><button type="button" className="button next-step" onClick={(e) => this.nextForm()}>Next</button></li>
+                                    <li><button type="button" className="button next-step" onClick={(e) => this.nextForm()}>{t("next")}</button></li>
                                 </ul>
                             </div>
                             <div className={classNames("tab-pane", { active: current == 2 })} role="tabpanel" id="step2" >
                                 <div style={{ height: "300px", overflowY: "auto" }}>
                                 <TextFieldGroup
-                                    placeholder="Land Area"
+                                    placeholder={t("landarea")}
                                     name="landArea"
                                     value={this.state.landArea}
                                     onChange={this.onChange}
@@ -295,15 +298,16 @@ class SignUp extends Component {
                                     value={this.state.landAreaType}
                                     onChange={this.onChange}
                                     options={options1}
+                                    info={t("landareatype")}
                                 // error={errors.landAreaType}
-
+                                    lang="auth"
                                 />
-                                <button type="button" className="button btn-default" onClick={(e) => this.appendInput() }>Add Commodity</button>
+                                <button type="button" className="button btn-default" onClick={(e) => this.appendInput() }>{t("addcommodity")}</button>
                                 
 
                                 {this.state.commodity.map(input => 
                                 <TextFieldGroup
-                                placeholder="Commodity"
+                                placeholder={t("commodity")}
                                 name={input}
                                 key={input}
                                 value={this.state.commodity[input]}
@@ -312,34 +316,34 @@ class SignUp extends Component {
                             />)}
                             </div>
                                 <ul className="row">
-                                    <div className="col-md"><button type="button" className="button btn-default prev-step" onClick={(e) => this.prevForm()}>Previous</button></div>
-                                    <div className="col-md"><button type="button" className="button next-step" onClick={(e) => this.nextForm()}>Next</button></div>
+                                    <div className="col-md"><button type="button" className="button btn-default prev-step" onClick={(e) => this.prevForm()}>{t("previous")}</button></div>
+                                    <div className="col-md"><button type="button" className="button next-step" onClick={(e) => this.nextForm()}>{t("next")}</button></div>
                                 </ul>
                             </div>
                             <div className={classNames("tab-pane", { active: current == 3 })} role="tabpanel" id="step3" >
                                 <TextFieldGroup
-                                    placeholder="Name of Bank"
+                                    placeholder={t("bankname")}
                                     name="bank_name"
                                     value={this.state.bank_name}
                                     onChange={this.onChange}
                                     //error={errors.bank_name}
                                     required={true}
                                 /><TextFieldGroup
-                                    placeholder="Account Number"
+                                    placeholder={t("accno")}
                                     name="accNumber"
                                     value={this.state.accNumber}
                                     onChange={this.onChange}
                                     // error={errors.accNumber}
                                     required={true}
                                 /><TextFieldGroup
-                                    placeholder="ifsc Code"
+                                    placeholder={t("ifsccode")}
                                     name="ifscCode"
                                     value={this.state.ifscCode}
                                     onChange={this.onChange}
                                     //error={errors.ifscCode}
                                     required={true}
                                 /><TextFieldGroup
-                                    placeholder="Account Holder Name"
+                                    placeholder={t("accholdername")}
                                     name="accHolderName"
                                     value={this.state.accHolderName}
                                     onChange={this.onChange}
@@ -347,27 +351,27 @@ class SignUp extends Component {
                                     required={true}
                                 />
                                 <ul className="row">
-                                    <div className="col-md"><button type="button" className="button btn-default prev-step" onClick={(e) => this.prevForm()}>Previous</button></div>
+                                    <div className="col-md"><button type="button" className="button btn-default prev-step" onClick={(e) => this.prevForm()}>{t("previous")}</button></div>
                         
-                                    <div className="col-md"><button type="button" className="button btn-primary btn-info-full next-step" onClick={(e) => this.nextForm()}>Next</button></div>
+                                    <div className="col-md"><button type="button" className="button btn-primary btn-info-full next-step" onClick={(e) => this.nextForm()}>{t("next")}</button></div>
                                 </ul>
                             </div>
                             <div className={classNames("tab-pane", { active: current == 4 })} role="tabpanel" id="complete" >
                                 <TextFieldGroup
-                                    placeholder="AadharNumber Number"
+                                    placeholder={t("aadharno")}
                                     name="aadharNumber"
                                     value={this.state.aadharNumber}
                                     onChange={this.onChange}
                                     //error={errors.aadharNumber}
                                     required={true}
                                 /><TextFieldGroup
-                                    placeholder="PAN Number"
+                                    placeholder={t("pan")}
                                     name="pan"
                                     value={this.state.pan}
                                     onChange={this.onChange}
                                 // error={errors.pan}
                                 /><TextFieldGroup
-                                    placeholder="Book no"
+                                    placeholder={t("papaavati")}
                                     name="bookno"
                                     value={this.state.bookno}
                                     onChange={this.onChange}
@@ -375,9 +379,9 @@ class SignUp extends Component {
                                     required={true}
                                 />
                                 <ul className="row">
-                                    <div className="col-md"><button type="button" className="button btn-default prev-step" onClick={(e) => this.prevForm()}>Previous</button></div>
+                                    <div className="col-md"><button type="button" className="button btn-default prev-step" onClick={(e) => this.prevForm()}>{t("previous")}</button></div>
 
-                                    <div className="col-md"><button type="submit" className="button btn-primary btn-info-full next-step" onClick={(e) => this.onSubmit(e)} >Submit</button></div>
+                                    <div className="col-md"><button type="submit" className="button btn-primary btn-info-full next-step" onClick={(e) => this.onSubmit(e)} >{t("register")}</button></div>
                                 </ul>
                             </div>
                             <div className="clearfix"></div>
@@ -398,4 +402,4 @@ const mapStateToProps = (state) => ({
     errors: state.errors
 });
 
-export default connect(mapStateToProps, { regUser })(SignUp);
+export default connect(mapStateToProps, { regUser })(withTranslation("auth")(SignUp));

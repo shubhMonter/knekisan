@@ -14,6 +14,7 @@ import Product from "./pages/product"
 import Dashboard from "./pages/dashboard"
 import Footer from "./component/footer"
 import store from "./redux/store"
+
 // Check for token
 if (localStorage.jwtToken) {
   // Set auth token header auth

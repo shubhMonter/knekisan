@@ -17,13 +17,15 @@ export const logUser = userData => dispatch => {
         const decoded = jwt_decode(token);
         // Set current user
         delete res.data.user.password;
-        dispatch(setUser(res.data.user));
+        return dispatch(setUser(res.data.user));
       })
-      .catch(err =>
-        dispatch({
-          type: SET_ERRORS,
-          payload: err.response.data
-        })
+      .catch(err =>{
+        if(err.response.data){
+          dispatch({
+            type: SET_ERRORS,
+            payload: err.response.data
+          });}
+        }
       );
      
   };

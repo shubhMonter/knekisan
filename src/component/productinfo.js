@@ -3,8 +3,10 @@ import classNames from 'classnames'
 import { Table, Accordion, Card, Button,Modal } from "react-bootstrap"
 import { imageUrl } from "../constant"
 import EnquiryForm from "../component/enquiryForm"
+import { useTranslation } from "react-i18next";
 var _ = require('lodash');
 export const ProductInfo = (product, hist,...props) => {
+    const { t } = useTranslation("home");
     console.log({props});
     console.log(hist);
     const [modalShow, setModalShow] = React.useState(false);
@@ -56,9 +58,9 @@ export const ProductInfo = (product, hist,...props) => {
                                                         <Table borderless hover size="sm" >
                                                             <thead>
                                                                 <tr>
-                                                                    <th>Maximum</th>
-                                                                    <th>Minimum</th>
-                                                                    <th>Deduction</th>
+                                        <th>{t("maximum")}</th>
+                                                                    <th>{t("minimum")}</th>
+                                                                    <th>{t("deduction")}</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -86,7 +88,7 @@ export const ProductInfo = (product, hist,...props) => {
                     </div>
 
                     <div className="text-center mt-5">
-                        <a className="button" onClick={() => setModalShow(true)}>Send Enquiry</a>
+                            <a className="button" onClick={() => setModalShow(true)}>{t("sendenquiry")}</a>
                     </div>
                 </div>
             </div>

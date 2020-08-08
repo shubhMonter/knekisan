@@ -1,0 +1,10 @@
+{
+    "sack": "Sack",
+    "weight": "Weight",
+    "vehno": "Vehicle Number",
+    "drivername": "Driver Name",
+    "note": "Note",
+    "quality": "Quality",
+    "sendenquiry": "Send Enquiry",
+    "status": "Status"
+}

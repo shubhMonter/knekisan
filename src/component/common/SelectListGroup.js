@@ -1,12 +1,15 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import { useTranslation } from "react-i18next";
 
-const SelectListGroup = ({ name, value, error, info, onChange, options,className }) => {
+
+const SelectListGroup = ({ name, value, error, info, onChange, options,className,lang }) => {
+  const { t } = useTranslation(lang);
   const selectOptions = options.map(option => (
     <option key={option.label} value={option.value}>
-      {option.label}
-    </option>
+      {t(`${option.label}`)}
+    </option> 
   ));
   return (
     <div className="form-group">

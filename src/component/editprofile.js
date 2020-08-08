@@ -2,19 +2,19 @@ import React, { Component } from "react"
 import classNames from "classnames"
 import TextFieldGroup from "./common/TextFieldGroup";
 import SelectListGroup from "./common/SelectListGroup";
-
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux'
 import PropTypes from "prop-types"
 import {updateUser} from "../redux/actions/authAction"
 import {updateImage} from "../services/auth"
 import {imageUrl} from "../constant"
 const options = [
-    { label: "Farmer", value: 'Farmer' },
-    { label: "Adatiya", value: 'Adatiya' },
-    { label: "Broker", value: 'Broker' }
+    { label: "farmer", value: 'farmer' },
+    { label: "adatiya", value: 'adatiya' },
+    { label: "broker", value: 'broker' }
 ]
 const options1 = [
-    { label: "class", value: 'class' },
+    { label: "square", value: 'square' },
     { label: "acre", value: 'acre' }
 ]
 class Editprofile extends Component {
@@ -202,7 +202,7 @@ class Editprofile extends Component {
 
       }
     render() {
-        console.log(this.state);
+        const {t}= this.props;
         const { errors } = this.state;
         const commodity = this.state.commodity.map(i => { return this.state[i] });
         let com = JSON.stringify(commodity);
@@ -213,10 +213,10 @@ class Editprofile extends Component {
                             <img src={this.state.imagePreviewUrl?this.state.imagePreviewUrl:this.state.documentsUploaded[0] ? `${imageUrl}/${this.state.documentsUploaded[0].replace("public","")}`:"https://lh3.googleusercontent.com/LfmMVU71g-HKXTCP_QWlDOemmWg4Dn1rJjxeEsZKMNaQprgunDTtEuzmcwUBgupKQVTuP0vczT9bH32ywaF7h68mF-osUSBAeM6MxyhvJhG6HKZMTYjgEv3WkWCfLB7czfODidNQPdja99HMb4qhCY1uFS8X0OQOVGeuhdHy8ln7eyr-6MnkCcy64wl6S_S6ep9j7aJIIopZ9wxk7Iqm-gFjmBtg6KJVkBD0IA6BnS-XlIVpbqL5LYi62elCrbDgiaD6Oe8uluucbYeL1i9kgr4c1b_NBSNe6zFwj7vrju4Zdbax-GPHmiuirf2h86eKdRl7A5h8PXGrCDNIYMID-J7_KuHKqaM-I7W5yI00QDpG9x5q5xOQMgCy1bbu3St1paqt9KHrvNS_SCx-QJgBTOIWW6T0DHVlvV_9YF5UZpN7aV5a79xvN1Gdrc7spvSs82v6gta8AJHCgzNSWQw5QUR8EN_-cTPF6S-vifLa2KtRdRAV7q-CQvhMrbBCaEYY73bQcPZFd9XE7HIbHXwXYA=s200-no"} class="picture-src" id="wizardPicturePreview" title="" />
                             <input type="file" id="wizard-picture" class="" onChange={(e)=>this._handleImageChange(e)} />
                         </div>
-                        <h6 class="">Choose Picture</h6>
+        <h6 class="">{t("choosepicture")}</h6>
                     </div>
                     <div className="upload-button">
-                        <button type="button" className="btn btn-primary" onClick={(e)=>this._handleSubmit(e)}>Upload Image</button>
+        <button type="button" className="btn btn-primary" onClick={(e)=>this._handleSubmit(e)}>{t("uploadimage")}</button>
                         </div>
                     
                 </div>
@@ -224,72 +224,73 @@ class Editprofile extends Component {
               
                
                
-                <h3>Profile Details</h3>
+        <h3>{t("dashboard:profile")} {t("dashboard:details")}</h3>
                 <SelectListGroup
-                    placeholder="Type of User"
+                    placeholder={t("typeofuser")}
                     name="userType"
                     value={this.state.userType}
                     onChange={this.onChange}
                     options={options}
                     //error={errors.userType}
-                    info="Type of User"
+                    info={t("typeofuser")}
                     required={true}
+                    lang="auth"
                 />
                 <TextFieldGroup
-                    placeholder="UserName"
+                    placeholder={t("username")}
                     name="userName"
                     value={this.state.userName}
                     onChange={this.onChange}
                     //error={errors.userName}
                     required={true}
-                    info="Username"
+                    info={t("username")}
                 />
                 <TextFieldGroup
-                    placeholder="Mobile Number"
+                    placeholder={t("mobno")}
                     name="mobile"
                     value={this.state.mobile}
                     onChange={this.onChange}
                     // error={errors.mobile}
                     required={true}
-                    info="Mobile Number"
+                    info={t("mobno")}
                 />
                 <TextFieldGroup
-                    placeholder="Address 1"
+                    placeholder={`${t("address")}1`}
                     name="address1"
                     value={this.state.address1}
                     onChange={this.onChange}
                 //error={errors.address1}
-                    info="Address 1"
+                    info={`${t("address")}1`}
                 />
                 <TextFieldGroup
-                    placeholder="Address 2"
+                    placeholder={`${t("address")}2`}
                     name="address2"
                     value={this.state.address2}
                     onChange={this.onChange}
                 // error={errors.address2}
-                    info="Address 2"
+                    info={`${t("address")}2`}
                 /><TextFieldGroup
-                    placeholder="City"
+                    placeholder={t("city")}
                     name="city"
                     value={this.state.city}
                     onChange={this.onChange}
-                    info="City"
+                    info={t("city")}
                 //error={errors.city}
                 /><TextFieldGroup
-                    placeholder="State"
+                    placeholder={t("state")}
                     name="state"
                     value={this.state.state}
                     onChange={this.onChange}
-                    info="State"
+                    info={t("state")}
                 //error={errors.state}
                 />
-                <h3>Land Details</h3>
+                <h3>{t("dashboard:land")} {t("dashboard:details")}</h3>
                 <TextFieldGroup
-                    placeholder="Land Area"
+                    placeholder={t("landarea")}
                     name="landArea"
                     value={this.state.landArea}
                     onChange={this.onChange}
-                    info="Land Area"
+                    info={t("landarea")}
                 // error={errors.landArea}
                 />
                 <SelectListGroup
@@ -298,86 +299,84 @@ class Editprofile extends Component {
                     value={this.state.landAreaType}
                     onChange={this.onChange}
                     options={options1}
-                    info="Land Area Type"
+                    info={t("landareatype")}
                 // error={errors.landAreaType}
-
+                lang="auth"
                 />
-                <button type="button" className="btn btn-primary" onClick={(e) => this.appendInput()}>Add Commodity</button>
+                <button type="button" className="btn btn-primary" onClick={(e) => this.appendInput()}>{t("addcommodity")}</button>
 
 
-                {this.state.commodity.map(input =>
+                {this.state.commodity.map((input,i) =>
                     <TextFieldGroup
-                        placeholder="Commodity"
+                        placeholder={t("commodity")}
                         name={input}
                         key={input}
                         value={this.state[input]}
                         onChange={this.onChange}
-                        info={input}
+                        info={`${t("commodity")}-${i}`}
                     //error={errors.commodity}
                     />)}
-                <h3>Bank Details</h3>
+                <h3>{t("dashboard:bank")} {t("dashboard:details")}</h3>
                 <TextFieldGroup
-                    placeholder="Name of Bank"
+                    placeholder={t("bankname")}
                     name="bank_name"
                     value={this.state.bank_name}
                     onChange={this.onChange}
-                    info="Name of Bank"
+                    info={t("bankname")}
                     //error={errors.bankName}
                     required={true}
                 /><TextFieldGroup
-                    placeholder="Account Number"
+                    placeholder={t("accno")}
                     name="accNumber"
                     value={this.state.accNumber}
                     onChange={this.onChange}
-                    info="Account Number"
+                    info={t("accno")}
                     // error={errors.accNumber}
                     required={true}
                 /><TextFieldGroup
-                    placeholder="ifsc Code"
+                    placeholder={t("ifsccode")}
                     name="ifscCode"
                     value={this.state.ifscCode}
                     onChange={this.onChange}
-                    info="IFSC Code"
+                    info={t("ifsccode")}
                     //error={errors.ifscCode}
                     required={true}
                 /><TextFieldGroup
-                    placeholder="Account Holder Name"
+                    placeholder={t("accholdername")}
                     name="accHolderName"
                     value={this.state.accHolderName}
                     onChange={this.onChange}
                     // error={errors.accHolderName}
-                    info="Account Holder Name"
+                    info={t("accholdername")}
                     required={true}
                 />
-                <h3>Id Card Details</h3>
+                <h3> {t("dashboard:identity")} {t("dashboard:card")} {t("dashboard:details")}</h3>
                 <TextFieldGroup
-                    placeholder="AadharNumber Number"
+                    placeholder={t("aadharno")}
                     name="aadharNumber"
                     value={this.state.aadharNumber}
                     onChange={this.onChange}
                     //error={errors.aadharNumber}
                     required={true}
-                    info="AadharNumber Number"
+                    info={t("aadharno")}
                 /><TextFieldGroup
-                    placeholder="PAN Number"
+                    placeholder={t("pan")}
                     name="pan"
                     value={this.state.pan}
                     onChange={this.onChange}
-                    info="PAN Number"
+                    info={t("pan")}
                 // error={errors.pan}
                 /><TextFieldGroup
-                    placeholder="Book no"
+                    placeholder={t("papaavati")}
                     name="bookno"
                     value={this.state.bookno}
                     onChange={this.onChange}
                     //error={errors.bookno}
                     required={true}
-                    info="Book Number"
+                    info={t("papaavati")}
                 />
-                <ul className="row">
-
-
-                    <div className="col-md"><button type="submit" className="button btn-primary btn-info-full next-step" onClick={(e) => this.onSubmit(e)} >Submit</button></div>
+                <ul className="row product-info ">
+                    <div className="col-md"><button type="submit" className="button btn-primary btn-info-full next-step" onClick={(e) => this.onSubmit(e)} >{t("update")}</button></div>
                 </ul>
 
             </form>
@@ -396,4 +395,4 @@ const mapStateToProps = (state) => ({
     errors: state.errors
 });
 
-export default connect(mapStateToProps, { updateUser })(Editprofile);
+export default connect(mapStateToProps, { updateUser })(withTranslation(["auth","dashboard"])(Editprofile));

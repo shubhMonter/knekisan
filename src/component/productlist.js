@@ -65,9 +65,6 @@ export const ProductList = (products,...props) => {
             <Modal.Body>
                 <EnquiryForm product={modalPro} />
             </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={() => setModalShow(false)}>Close</Button>
-            </Modal.Footer>
             </Modal>           
     </div>
 

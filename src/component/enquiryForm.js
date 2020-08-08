@@ -3,6 +3,7 @@ import TextFieldGroup from "./common/TextFieldGroup";
 import {CreateEnquiry} from "../services/enquiry";
 import {connect} from 'react-redux'
 import PropTypes from "prop-types"
+import { withTranslation } from 'react-i18next';
 class EnquiryForm extends Component {
     constructor(props){
         super(props);
@@ -55,15 +56,16 @@ class EnquiryForm extends Component {
 		this.setState({ [e.target.name]: e.target.value });
 	  }
     render(){
+      const { t } = this.props;
         const {errors,success}=this.state;
-        console.log(this.state);
+       
         return(
                 <div className="product-info text-center">
                     {errors && <div className="alert alert-danger" style={{display:"block",fontSize:"15px"}}>{errors}</div>}
                     {success && <div className="alert alert-success" style={{display:"block",fontSize:"15px"}}>{success}</div>}
 				 <form onSubmit={this.onSubmit.bind(this)}>
                 <TextFieldGroup
-                  placeholder="Sack"
+                  placeholder={t("sack")}
                   className="bori"
                   name="bori"
                   type="text"
@@ -74,7 +76,7 @@ class EnquiryForm extends Component {
                 />
 
                 <TextFieldGroup
-                  placeholder="weight"
+                  placeholder={t("weight")}
                   className="weight"
                   name="weight"
                   type="weight"
@@ -83,7 +85,7 @@ class EnquiryForm extends Component {
                  // error={errors.weight}
                  required={true}
                 /> <TextFieldGroup
-                  placeholder="Vehicle Number"
+                  placeholder={t("vehno")}
                   className="veh"
                   name="vehicleNo"
                   type="vehicleNo"
@@ -92,7 +94,7 @@ class EnquiryForm extends Component {
                 //  error={errors.vehicleNo}
                 required={true}
                 /> <TextFieldGroup
-                  placeholder="Driver Name"
+                  placeholder={t("drivername")}
                   className="driver"
                   name="driver"
                   type="driver"
@@ -100,7 +102,7 @@ class EnquiryForm extends Component {
                   onChange={this.onChange}
                  // error={errors.driver}
                 /> <TextFieldGroup
-                  placeholder="Note"
+                  placeholder={t("note")}
                   className="notes"
                   name="notes"
                   type="notes"
@@ -109,7 +111,7 @@ class EnquiryForm extends Component {
                  // error={errors.notes}
                  required={true}
                 /><TextFieldGroup
-                placeholder="Quality"
+                placeholder={t("quality")}
                 className="quality"
                 name="quality"
                 type="quality"
@@ -118,7 +120,7 @@ class EnquiryForm extends Component {
                // error={errors.quality}
                
               /> 
-               <button type="submit" className="button">Send Enquiry</button>
+               <button type="submit" className="button">{t("sendenquiry")}</button>
               </form>
 			</div>)
     }
@@ -132,4 +134,4 @@ const mapStateToProps =(state) => ({
     errors: state.errors
   });
 
-export default connect(mapStateToProps)(EnquiryForm);
+export default connect(mapStateToProps)(withTranslation("enquiry")(EnquiryForm));

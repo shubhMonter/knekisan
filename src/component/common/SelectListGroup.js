@@ -6,9 +6,11 @@ import { useTranslation } from "react-i18next";
 
 const SelectListGroup = ({ name, value, error, info, onChange, options,className,lang }) => {
   const { t } = useTranslation(lang);
+  console.log(options);
   const selectOptions = options.map(option => (
     <option key={option.label} value={option.value}>
-      {t(`${option.label}`)}
+      {console.log(option.value)}
+      {t(`${option.label}`) }
     </option> 
   ));
   return (

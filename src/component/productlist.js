@@ -17,11 +17,12 @@ export const ProductList = (products,...props) => {
            
         }
 }
+    console.log(list);
     return(
         <div className="container section">
             <div className="row">
                 {
-                   list.map(i=>{
+                   list.filter(f=>{if(f.status=='Active')return f}).map(i=>{
                        console.log(i);
                        let img1,img2;
                             if(i){
@@ -40,9 +41,14 @@ export const ProductList = (products,...props) => {
                             
                             <div className="product-content">
                     <h3 className="title"><a href={`/product/${i._id}`}>{i.name}</a></h3>
-                                <div className="price">₹{i.price}
-                                    {/* <span>$20.00</span> */}
-                                </div>
+                                {i.priceBycenters && 
+                                i.priceBycenters.slice(0,2).map(x=>
+                                    (
+                                    <div className="price">
+                                        {x.center}:₹{x.price}
+                                        </div>
+                                        )
+                                        )}
                                 <a className="add-to-cart" onClick={()=>{setModalShow(true);setModalPro(i._id);}}>+ Add To Cart</a>
                             </div>
                         </div>

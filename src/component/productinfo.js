@@ -26,9 +26,14 @@ export const ProductInfo = (product, hist,...props) => {
                 <div className="col-md-6 col-sm-12" >
                     <div className="title">
                         <h4>{product.product.name}</h4>
-                        <div className="price">₹{product.product.price}
-                            {/* <span>$20.00</span> */}
-                        </div>
+                        {product.product.priceBycenters && 
+                                product.product.priceBycenters.slice(0,2).map(x=>
+                                    (
+                                    <div className="price">
+                                        {x.center}:₹{x.price}
+                                        </div>
+                                        )
+                                        )}
                     </div>
                     <div className="description">
                         {product.product.description}
@@ -105,7 +110,7 @@ export const ProductInfo = (product, hist,...props) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <EnquiryForm product={product.product._id} history={hist}/>
+                <EnquiryForm product={product.product._id} priceBycenters={product.product.priceBycenters} history={hist}/>
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={() => setModalShow(false)}>Close</Button>
